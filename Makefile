@@ -5,10 +5,10 @@ all:
 
 run:
 	epaxos-master &
-	sleep 1; epaxos-server -e -port 7070 &
-	sleep 1; epaxos-server -e -port 7071 &
-	sleep 1; epaxos-server -e -port 7072 &
-	sleep 5; epaxos-client -e
+	epaxos-server -e -port 7070 &
+	epaxos-server -e -port 7071 &
+	epaxos-server -e -port 7072 &
+	sleep 5; epaxos-client -e -check -q 10000 -w 50 
 
 clean:
 	rm -rf stable-store-replica0
