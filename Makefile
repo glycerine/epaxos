@@ -5,10 +5,10 @@ all:
 
 run:
 	epaxos-master &
-	epaxos-server -e -port 7070 &
-	epaxos-server -e -port 7071 &
-	epaxos-server -e -port 7072 &
-	epaxos-client -e
+	sleep 1; epaxos-server -e -port 7070 &
+	sleep 1; epaxos-server -e -port 7071 &
+	sleep 1; epaxos-server -e -port 7072 &
+	sleep 1; epaxos-client -e
 
 clean:
 	pkill -9 epaxos-master epaxos-server epaxos-client
