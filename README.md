@@ -63,15 +63,15 @@ To build:
 ~~~
     export GOPATH=[...]/git/epaxos/
 
-    go install master
-    go install server
-    go install client
+    go install epaxos-master
+    go install epaxos-server
+    go install epaxos-client
 
 To run:
 
-    bin/master &
-    bin/server -port 7070 &
-    bin/server -port 7071 &
-    bin/server -port 7072 &
-    bin/client
+    bin/epaxos-master &
+    bin/epaxos-server -port 7070 &
+    bin/epaxos-server -port 7071 &
+    bin/epaxos-server -port 7072 &
+    bin/epaxos-client
 ~~~
