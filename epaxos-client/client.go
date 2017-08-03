@@ -103,11 +103,21 @@ func main() {
 		//fmt.Println(test[0:100])
 	}
 
+	tries := 10
 	for i := 0; i < N; i++ {
 		var err error
-		servers[i], err = net.Dial("tcp", rlReply.ReplicaList[i])
-		if err != nil {
-			log.Printf("Error connecting to replica %d\n", i)
+		for j := 0; j < tries; j++ {
+			servers[i], err = net.Dial("tcp", rlReply.ReplicaList[i])
+			if err == nil {
+				break
+			}
+			if err != nil {
+				log.Printf(fmt.Sprintf("Error connecting to replica %d: %v. try=%v of %v\n", i, err, j, tries))
+				if j == tries-1 {
+					panic("too many failed tries to connect")
+				}
+				time.Sleep(100 * time.Millisecond)
+			}
 		}
 		readers[i] = bufio.NewReader(servers[i])
 		writers[i] = bufio.NewWriter(servers[i])
@@ -181,6 +191,7 @@ func main() {
 			id++
 			if i%100 == 0 {
 				for i := 0; i < N; i++ {
+					//fmt.Printf("flushing writers[i=%v out of N=%v] == %p\n", i, N, writers[i])
 					writers[i].Flush()
 				}
 			}
@@ -245,9 +256,10 @@ func waitReplies(readers []*bufio.Reader, leader int, n int, done chan bool) {
 	e := false
 
 	reply := new(genericsmrproto.ProposeReplyTS)
+	//fmt.Printf("n=%v.  len(readers) = %v. leader=%v\n", n, len(readers), leader)
 	for i := 0; i < n; i++ {
 		if err := reply.Unmarshal(readers[leader]); err != nil {
-			fmt.Println("Error when reading:", err)
+			//fmt.Println("Error when reading:", err)
 			e = true
 			continue
 		}

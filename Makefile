@@ -8,7 +8,7 @@ run:
 	sleep 1; epaxos-server -e -port 7070 &
 	sleep 1; epaxos-server -e -port 7071 &
 	sleep 1; epaxos-server -e -port 7072 &
-	sleep 1; epaxos-client -e
+	sleep 5; epaxos-client -e
 
 clean:
 	rm -rf stable-store-replica0
