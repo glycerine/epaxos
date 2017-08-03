@@ -11,6 +11,7 @@ run:
 	sleep 1; epaxos-client -e
 
 clean:
-	pkill -9 epaxos-master epaxos-server epaxos-client
-
-
+	rm -rf stable-store-replica0
+	rm -rf stable-store-replica1
+	rm -rf stable-store-replica2
+	pkill -9 epaxos-master epaxos-server epaxos-client || true
