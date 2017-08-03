@@ -3,7 +3,6 @@ package epaxosproto
 import (
 	"bufio"
 	"encoding/binary"
-	"fastrpc"
 	"github.com/glycerine/epaxos/fastrpc"
 	"github.com/glycerine/epaxos/state"
 	"io"
