@@ -1,7 +1,7 @@
 package menciusproto
 
 import (
-	"state"
+	"github.com/glycerine/epaxos/state"
 )
 
 type Skip struct {

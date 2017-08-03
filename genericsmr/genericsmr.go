@@ -3,15 +3,15 @@ package genericsmr
 import (
 	"bufio"
 	"encoding/binary"
-	"fastrpc"
 	"fmt"
-	"genericsmrproto"
+	"github.com/glycerine/epaxos/fastrpc"
+	"github.com/glycerine/epaxos/genericsmrproto"
+	"github.com/glycerine/epaxos/rdtsc"
+	"github.com/glycerine/epaxos/state"
 	"io"
 	"log"
 	"net"
 	"os"
-	"rdtsc"
-	"state"
 	"time"
 )
 
@@ -191,7 +191,9 @@ func (r *Replica) waitForPeerConnections(done chan bool) {
 	var b [4]byte
 	bs := b[:4]
 
-	r.Listener, _ = net.Listen("tcp", r.PeerAddrList[r.Id])
+	var err error
+	r.Listener, err = net.Listen("tcp", r.PeerAddrList[r.Id])
+	panicOn(err)
 	for i := r.Id + 1; i < int32(r.N); i++ {
 		conn, err := r.Listener.Accept()
 		if err != nil {

@@ -1,17 +1,17 @@
 package epaxos
 
 import (
-	"bloomfilter"
-	"dlog"
 	"encoding/binary"
-	"epaxosproto"
-	"fastrpc"
-	"genericsmr"
-	"genericsmrproto"
+	"github.com/glycerine/epaxos/bloomfilter"
+	"github.com/glycerine/epaxos/dlog"
+	"github.com/glycerine/epaxos/epaxosproto"
+	"github.com/glycerine/epaxos/fastrpc"
+	"github.com/glycerine/epaxos/genericsmr"
+	"github.com/glycerine/epaxos/genericsmrproto"
+	"github.com/glycerine/epaxos/state"
 	"io"
 	"log"
 	"math"
-	"state"
 	"sync"
 	"time"
 )
@@ -704,8 +704,8 @@ func (r *Replica) updateConflicts(cmds []state.Command, replica int32, instance 
 				r.conflicts[replica][cmds[i].K] = instance
 			}
 		} else {
-            r.conflicts[replica][cmds[i].K] = instance
-        }
+			r.conflicts[replica][cmds[i].K] = instance
+		}
 		if s, present := r.maxSeqPerKey[cmds[i].K]; present {
 			if s < seq {
 				r.maxSeqPerKey[cmds[i].K] = seq

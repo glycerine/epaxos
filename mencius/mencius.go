@@ -1,15 +1,15 @@
 package mencius
 
 import (
-	"dlog"
 	"encoding/binary"
-	"fastrpc"
-	"genericsmr"
-	"genericsmrproto"
+	"github.com/glycerine/epaxos/dlog"
+	"github.com/glycerine/epaxos/fastrpc"
+	"github.com/glycerine/epaxos/genericsmr"
+	"github.com/glycerine/epaxos/genericsmrproto"
+	"github.com/glycerine/epaxos/menciusproto"
+	"github.com/glycerine/epaxos/state"
 	"io"
 	"log"
-	"menciusproto"
-	"state"
 	"time"
 )
 

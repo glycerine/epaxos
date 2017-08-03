@@ -57,3 +57,21 @@ AUTHORS:
 Iulian Moraru, David G. Andersen -- Carnegie Mellon University
 
 Michael Kaminsky -- Intel Labs
+Built with Go version go1.1.2
+
+To build:
+~~~
+    export GOPATH=[...]/git/epaxos/
+
+    go install master
+    go install server
+    go install client
+
+To run:
+
+    bin/master &
+    bin/server -port 7070 &
+    bin/server -port 7071 &
+    bin/server -port 7072 &
+    bin/client
+~~~

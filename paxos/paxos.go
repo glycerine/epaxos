@@ -1,16 +1,17 @@
 package paxos
 
 import (
-	"dlog"
 	"encoding/binary"
-	"fastrpc"
-	"genericsmr"
-	"genericsmrproto"
 	"io"
 	"log"
-	"paxosproto"
-	"state"
 	"time"
+
+	"github.com/glycerine/epaxos/dlog"
+	"github.com/glycerine/epaxos/fastrpc"
+	"github.com/glycerine/epaxos/genericsmr"
+	"github.com/glycerine/epaxos/genericsmrproto"
+	"github.com/glycerine/epaxos/paxosproto"
+	"github.com/glycerine/epaxos/state"
 )
 
 const CHAN_BUFFER_SIZE = 200000

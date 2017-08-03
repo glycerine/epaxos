@@ -1,9 +1,9 @@
 package epaxos
 
 import (
-	//    "state"
-	"epaxosproto"
-	"genericsmrproto"
+	//    "github.com/glycerine/epaxos/state"
+	"github.com/glycerine/epaxos/epaxosproto"
+	"github.com/glycerine/epaxos/genericsmrproto"
 	"sort"
 	"time"
 )
